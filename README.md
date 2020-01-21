@@ -2,6 +2,7 @@
 
 This repository is a fork from https://github.com/JiahuiYu/generative_inpainting.
 The initial code has not been modified, only the experiment.py file is added.
+You can find our analysis in 'Rapport.pdf'.
 It is aimed to study the results or pre-trained models.
 To run tests like we did:
     * Make the installation and download the Places2 model as indicated bellow
