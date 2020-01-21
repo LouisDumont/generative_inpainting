@@ -10,7 +10,7 @@ It is aimed to study the results or pre-trained models.
     * Put your own images in 'exemples/own_raw'
     * Run 'python3 experiences.py' from 'generative_inpainting'
 
-Bellow arethe instructions from the original repository.
+Bellow are the instructions from the original repository.
 
 # Generative Image Inpainting
 
