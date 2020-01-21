@@ -5,12 +5,12 @@ import os
 
 # --- Global variables --- #
 data_folder = os.getcwd() + '/examples/'
-width, height = 680, 512
+width, height = 680, 512 # 256, 256
 
 # --- Experiment Variables --- #
 source_folder = '/own_raw/'
-destination_folder = '/own/'
-hole_sizes = [70, 110, 150]
+destination_folder = '/own_noResize/'
+hole_sizes = [70, 110, 150] # [35,55,75]
 hole_locations = [(40,100)] # keep len to 1, other lenghts are not supported
 quadruple = True # Whether to multiply the experience by replicating the hole on all possible invertions of the positions
 mirror = True # Whether to include mirror images
@@ -38,7 +38,7 @@ def copy_folder(source, dest, width, height, nb_repet):
     for i, name in enumerate(filenames_source):
         img_own = cv2.imread(source+filenames_source[i])
         img_resized = cv2.resize(img_own, (width,height))
-        print('writting inder:', i*nb_repet)
+        print('writting index:', i*nb_repet)
         cv2.imwrite(dest + '/ex'+str(i*nb_repet)+'_raw.png', img_resized)
 
 def create_mirrors(img):
@@ -78,14 +78,14 @@ def create_inputs_and_masks(in_folder, dest_folder, quadruple, mirror, hole_size
 
     count = 0
     for i in range(nb_images):
-        print('reading inder:', i*nb_repet)
+        print('reading index:', i*nb_repet)
         img = cv2.imread(dest_folder + '/ex'+str(i*nb_repet)+'_raw.png')
 
         for mask_template in mask_templates:
 
             img0 = img.copy()
             img0[np.where(mask_template==255)] = 255
-            print('writting inder:', count)
+            print('writting index:', count)
             cv2.imwrite(dest_folder + '/ex'+str(count)+'_input.png', img0)
             cv2.imwrite(dest_folder + '/ex'+str(count)+'_mask.png', mask_template)
             count += 1
@@ -93,7 +93,7 @@ def create_inputs_and_masks(in_folder, dest_folder, quadruple, mirror, hole_size
             if mirror:
                 img0 = create_mirrors(img.copy())
                 img0[np.where(mask_template==255)] = 255
-                print('writting inder:', count)
+                print('writting index:', count)
                 cv2.imwrite(dest_folder + '/ex'+str(count)+'_input.png', img0)
                 cv2.imwrite(dest_folder + '/ex'+str(count)+'_mask.png', mask_template)
                 count += 1
